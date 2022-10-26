@@ -34,9 +34,9 @@ function ProfileEdit() {
     dispatch(profileUser(loginUser?.userId));
   }, [loginUser, dispatch]);
   // form이 제출되었을 때 발생하는 이벤트
-  const onValid = (inputs) => {
+  const onValid = async (inputs) => {
     const { nickname, oldPassword, newPassword, confirm } = inputs;
-    console.log(inputs);
+
     if (
       user.nickname === nickname &&
       oldPassword === "" &&
@@ -61,16 +61,16 @@ function ProfileEdit() {
       return;
     }
 
-    const response = instance.put(`users/${user.userId}`, {
+    const response = await instance.put(`users/${user.userId}`, {
       nickname,
       oldPassword,
       newPassword,
       confirm,
     });
-
-    if (response.ok) {
-      alert(response.message);
-      navigate(`/profile/${user.id}`);
+    console.log(response);
+    if (response.data.ok) {
+      alert(response.data.message);
+      navigate(`/profile/${user.userId}`);
     } else {
       alert(response.message);
     }
@@ -81,7 +81,6 @@ function ProfileEdit() {
     const fileBlob = URL.createObjectURL(e.target.files[0]);
     setFile(fileBlob);
     try {
-      console.log(e.target.files[0]);
       const response = await postApi
         .put("users/image", { avatar: e.target.files[0] })
         .then((res) => {

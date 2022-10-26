@@ -8,6 +8,8 @@ import { BsChat } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { readQuestions } from "../redux/modules/questions";
 import { useEffect } from "react";
+import { Flexbox } from "../styles/flex";
+import EditSvg from "../styles/svg/EditSvg";
 
 function Question() {
   const dispatch = useDispatch();
@@ -17,10 +19,16 @@ function Question() {
     dispatch(readQuestions());
   }, [dispatch]);
 
-
+  //<QuestionFormLink to={"/questions/form"}>질문 추가</QuestionFormLink>
   return (
     <Layout>
-      <PageTitle>Question</PageTitle>
+      <FormBox>
+        <PageTitle>Question</PageTitle>
+        <QuestionFormLink to={"/questions/form"}>
+          <EditSvg />
+        </QuestionFormLink>
+      </FormBox>
+
       <ThreadGroup>
         <ThreadTitle>Question Thread</ThreadTitle>
         <Threadicon>
@@ -64,9 +72,6 @@ function Question() {
         })}
       </ThreadContainer>
       <Line />
-      <FormBox>
-      <QuestionFormLink to={"/questions/form"}>질문 추가</QuestionFormLink>
-      </FormBox>
     </Layout>
   );
 }
@@ -75,8 +80,8 @@ export default Question;
 
 // 질문 페이지 타이틀
 const PageTitle = styled.div`
-  width: 1000px;
-  margin: 0 auto;
+  width: 100%;
+  //margin: 0 auto;
   margin-top: 4rem;
   font-size: 4rem;
   font-weight: bold;
@@ -89,7 +94,8 @@ const ThreadTitle = styled.div`
 
 // 스레드 그룹
 const ThreadGroup = styled.div`
-  width: 1000px;
+  //width: 1000px;
+  width: 100%;
   margin: 0 auto;
   margin-top: 1.5rem;
   display: flex;
@@ -105,14 +111,15 @@ const Threadicon = styled.div`
 
 // 보더 라인
 const Line = styled.div`
-  width: 1000px;
+  width: 100%;
+  //width: 1000px;
   margin: 0 auto;
   border-bottom: 1px solid #e9ecef;
 `;
 
 // 스레드 컨테이너
 const ThreadContainer = styled.div`
-  max-width: 1000px;
+  //max-width: 1000px;
   width: 100%;
   margin: 0 auto;
   height: 450px;
@@ -187,22 +194,37 @@ const AnswerCount = styled.div`
 
 // 질문폼 박스
 const FormBox = styled.div`
-  position: relative;
-  max-width: 1000px;
-  height: 42px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  //position: relative;
+  //max-width: 1000px;
+  width: 100%;
+  //height: 42px;
   margin: 0 auto;
-  margin-top: 10px;
 `;
 
 // 질문폼 링크
 const QuestionFormLink = styled(Link)`
-  position: absolute;
+  ${Flexbox}
+
+  //position: absolute;
   cursor: pointer;
   border: 1px solid #e9ecef;
   text-align: center;
-  padding: 13px;
   border-radius: 0.2rem;
-  width: 5.8rem;
-  height: 42px;
-  margin-left: 89.6%;
+  width: 50px;
+  aspect-ratio: 1/1;
+  margin-right: 4.5rem;
+  font-size: 0.9rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: background-color 0.2s linear;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  //margin-left: 89.6%;
+  svg {
+    width: 1.2rem;
+    color: white;
+  }
 `;

@@ -3,8 +3,7 @@ import styled from "styled-components";
 import Layout from "../components/Layout/Layout";
 import TextInput from "../elem/TextInput";
 import Button from "../elem/Button";
-import axios from "axios";
-import { Cookies } from "react-cookie";
+
 import { setAccessToken } from "../shared/Cookie";
 import { api } from "../shared/apis";
 
@@ -15,7 +14,8 @@ function Login() {
     formState: { errors },
   } = useForm();
 
-  const onValid = async (inputs) => {
+  const onValid = async (inputs, e) => {
+    e.preventDefault();
     try {
       const response = await api
         .post("login", {
@@ -108,10 +108,4 @@ const Form = styled.form`
     font-size: 1.6rem;
     font-weight: 600;
   }
-`;
-const ErrorMessage = styled.span`
-  padding-top: 0.2rem;
-  height: 1.6rem;
-  color: red;
-  font-size: 0.75rem;
 `;
