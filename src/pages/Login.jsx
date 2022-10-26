@@ -14,8 +14,7 @@ function Login() {
     formState: { errors },
   } = useForm();
 
-  const onValid = async (inputs, e) => {
-    e.preventDefault();
+  const onValid = async (inputs) => {
     try {
       const response = await api
         .post("login", {

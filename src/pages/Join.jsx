@@ -11,8 +11,7 @@ function Join() {
     formState: { errors },
     setError,
   } = useForm();
-  const onValid = async (inputs, e) => {
-    e.preventDefault();
+  const onValid = async (inputs) => {
     if (inputs.password !== inputs.confirm) {
       setError(
         "confirm",
