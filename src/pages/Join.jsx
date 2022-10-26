@@ -3,19 +3,16 @@ import styled from "styled-components";
 import Layout from "../components/Layout/Layout";
 import TextInput from "../elem/TextInput";
 import Button from "../elem/Button";
-
-import { useDispatch } from "react-redux";
-import { addUser } from "../redux/modules/loginUser";
 import { api } from "../shared/apis";
 function Join() {
-  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
     setError,
   } = useForm();
-  const onValid = async (inputs) => {
+  const onValid = async (inputs, e) => {
+    e.preventDefault();
     if (inputs.password !== inputs.confirm) {
       setError(
         "confirm",
