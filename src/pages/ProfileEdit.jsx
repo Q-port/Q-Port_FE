@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import UseUser from "../components/hooks/useUser";
+import UseUser from "../hooks/useUser";
 import Layout from "../components/Layout/Layout";
 import TextInput from "../elem/TextInput";
 import { profileUser } from "../redux/modules/profile";

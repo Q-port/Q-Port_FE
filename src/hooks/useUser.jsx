@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Cookies } from "react-cookie";
-import instance from "../../shared/apis";
 import { isExpired, decodeToken } from "react-jwt";
-import { removeCookieToken } from "../../shared/Cookie";
+import { removeCookieToken } from "../shared/Cookie";
 const cookies = new Cookies();
 const myToken = cookies.get("user_token");
 

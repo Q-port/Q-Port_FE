@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { removeCookieToken } from "../../shared/Cookie";
-import UseUser from "../hooks/useUser";
+import UseUser from "../../hooks/useUser";
 import Logo1 from "../../static/logo.png";
 import { getUser } from "../../redux/modules/loginUser";
 // import Logo2 from "../../static/logo2.png";

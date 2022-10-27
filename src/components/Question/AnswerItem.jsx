@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "../../elem/Button";
+
 import { FlexBetweenBox, Flexbox } from "../../styles/flex";
 import HeartSvg from "../../styles/svg/HeartSvg";
 import CheckSvg from "../../styles/svg/CheckSvg";

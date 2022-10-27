@@ -20,7 +20,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { rankUser } from "../redux/modules/loginUser";
 import { useForm } from "react-hook-form";
-import UseUser from "../components/hooks/useUser";
+import UseUser from "../hooks/useUser";
 
 function Home() {
   const dispatch = useDispatch();

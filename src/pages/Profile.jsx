@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import UseUser from "../components/hooks/useUser";
+import UseUser from "../hooks/useUser";
 import Layout from "../components/Layout/Layout";
 import List from "../components/profile/List";
 import UserInfo from "../components/profile/UserInfo";

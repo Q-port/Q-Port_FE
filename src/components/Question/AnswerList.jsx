@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import AnswerItem from "./AnswerItem";
-import UseUser from "../hooks/useUser";
+import UseUser from "../../hooks/useUser";
 function AnswerList({ answers, selectedId, ownerId }) {
   const user = UseUser();
   let newAnswers = [];
