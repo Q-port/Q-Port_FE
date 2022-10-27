@@ -11,7 +11,7 @@ function QContainer({ question, len, user }) {
   const onDelete = () => {
     const ok = window.confirm("정말로 삭제하시겠습니까?");
     if (ok) {
-      dispatch(removeQuestion(question.qusetionId));
+      dispatch(removeQuestion(question.questionId));
       navigate("/questions");
     } else {
       return;
@@ -31,7 +31,7 @@ function QContainer({ question, len, user }) {
       </QContent>
       <QFooter>
         <Link to={`/profile/${question.userId}`}>
-          <div />
+          <img src={question?.avatar} alt="" />
           <span>{question?.nickname}</span>
         </Link>
         <div>
@@ -102,7 +102,7 @@ const QFooter = styled.div`
   a {
     display: flex;
     align-items: center;
-    div {
+    img {
       width: 1.5rem;
       height: 1.5rem;
       background-color: rgba(0, 0, 0, 0.2);

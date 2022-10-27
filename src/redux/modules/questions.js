@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { api } from "../../shared/apis";
+import instance, { api } from "../../shared/apis";
 
 /** questionId를 받아와서 해당 질문글을 조회하는 함수 */
 export const readQuestion = createAsyncThunk(
@@ -31,7 +31,7 @@ export const removeQuestion = createAsyncThunk(
   "questions/removeQuestion",
   async (payload, thunkApi) => {
     try {
-      await api.delete(`qnas/${payload}`);
+      await instance.delete(`qnas/${payload}`);
       return thunkApi.fulfillWithValue(payload);
     } catch (e) {
       return thunkApi.rejectWithValue(e);
@@ -90,7 +90,7 @@ const questionsSlice = createSlice({
     [removeQuestion.fulfilled]: (state, action) => {
       state.isLoding = false;
       state.questions = state.questions.filter(
-        (question) => question.id !== action.payload
+        (question) => question.questionId !== action.payload
       );
     },
     [removeQuestion.rejected]: (state, action) => {
