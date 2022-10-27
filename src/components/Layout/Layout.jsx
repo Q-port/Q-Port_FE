@@ -15,7 +15,7 @@ export default Layout;
 const Wrapper = styled.div`
   padding-top: 44px;
   font-weight: 600;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
 
   @media (max-width: 1500px) {
