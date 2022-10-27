@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import instance, { api } from "../../shared/apis";
-
-const BASE_URL = "";
+import { api } from "../../shared/apis";
 
 /** questionId를 받아와서 해당 질문글을 조회하는 함수 */
 export const readQuestion = createAsyncThunk(
@@ -44,6 +42,7 @@ export const removeQuestion = createAsyncThunk(
 export const searchQuestions = createAsyncThunk(
   "questions/searchQuestions",
   async (payload, thunkApi) => {
+    console.log(payload);
     try {
       const { data } = await api.get(`qnas/search?content=${payload}`);
       return thunkApi.fulfillWithValue(data.data);
@@ -96,6 +95,17 @@ const questionsSlice = createSlice({
       );
     },
     [removeQuestion.rejected]: (state, action) => {
+      state.isLoding = false;
+      state.error = action.payload;
+    },
+    [searchQuestions.pending]: (state) => {
+      state.isLoding = true;
+    },
+    [searchQuestions.fulfilled]: (state, action) => {
+      state.isLoding = false;
+      state.questions = action.payload;
+    },
+    [searchQuestions.rejected]: (state, action) => {
       state.isLoding = false;
       state.error = action.payload;
     },

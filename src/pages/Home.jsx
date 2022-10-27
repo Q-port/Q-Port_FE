@@ -27,7 +27,7 @@ function Home() {
   const backgroundImg = backgroundArr[randomIndex];
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
-
+  console.log(users);
   const onSubmit = ({ keyword }) => {
     navigate(`/questions?keyword=${keyword}`);
   };

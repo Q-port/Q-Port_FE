@@ -5,8 +5,8 @@ export const rankUser = createAsyncThunk(
   "users/rankUser",
   async (payload, thunkApi) => {
     try {
-      const { data } = await api.get("ranks");
-      return thunkApi.fulfillWithValue(data);
+      const { data } = await api.get("users/ranks");
+      return thunkApi.fulfillWithValue(data.data);
     } catch (e) {
       return thunkApi.rejectWithValue(e);
     }
