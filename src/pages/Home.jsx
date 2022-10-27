@@ -20,6 +20,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { rankUser } from "../redux/modules/loginUser";
 import { useForm } from "react-hook-form";
+import UseUser from "../components/hooks/useUser";
 
 function Home() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function Home() {
   const backgroundImg = backgroundArr[randomIndex];
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
+  const loginUser = UseUser();
 
   const onSubmit = ({ keyword }) => {
     navigate(`/questions?keyword=${keyword}`);
@@ -52,13 +54,13 @@ function Home() {
           <Label>Qport Top 3</Label>
           <VerticalLine />
           <StyleLink to="/questions">
-            <A>questions</A>
-          </StyleLink>
-          <StyleLink to="/questions/:questionId/write">
-            <A>WriteAnswer</A>
+            <A>Questions</A>
           </StyleLink>
           <StyleLink to="/questions/form">
-            <A>questionsform</A>
+            <A>Question Form</A>
+          </StyleLink>
+          <StyleLink to={`/profile/${loginUser && loginUser?.userId}`}>
+            <A>My Profile</A>
           </StyleLink>
         </Widgets>
         {users ? (

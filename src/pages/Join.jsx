@@ -103,7 +103,7 @@ function Join() {
                   message: "닉네임은 2자 이상으로 작성해야합니다.",
                 },
                 pattern: {
-                  value: /^[a-z0-9ㄱ-ㅎ가-힣]+$/g,
+                  value: /^[a-zA-Z0-9ㄱ-ㅎ가-힣]+$/g,
                   message: "닉네임에는 특수 문자 및 공백이 불가능합니다.",
                 },
               }),

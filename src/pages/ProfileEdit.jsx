@@ -93,8 +93,6 @@ function ProfileEdit() {
     } catch (e) {
       return alert("프로필 수정이 실패하였습니다.");
     }
-
-    navigate(`/profile/${user?.userId}`);
   };
 
   return (
