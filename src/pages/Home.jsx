@@ -171,12 +171,6 @@ const VerticalLine = styled.div`
 
 //  랭크 위치
 const Ranker = styled.div`
-  /* align-items: center;
-  width: 1900px;
-  height: 80%;
-  
-  margin: 0 auto;
-   */
   padding: 3%;
   margin: 0 auto;
   display: flex;
