@@ -1,7 +1,6 @@
 import Layout from "../components/Layout/Layout";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import Avatar from "@mui/material/Avatar";
 import mainbg from "../static/mainbg.png";
 import lens from "../static/lens.png";
 import me1 from "../static/memoji1.png";
@@ -14,7 +13,10 @@ import me7 from "../static/memoji7.png";
 import me8 from "../static/memoji8.png";
 import me9 from "../static/memoji9.png";
 import me10 from "../static/memoji10.png";
-import { Link, useNavigate } from "react-router-dom";
+import gold from "../static/gold.png";
+import silver from "../static/silver.png";
+import bronze from "../static/bronze.png";
+import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { rankUser } from "../redux/modules/loginUser";
 import { useForm } from "react-hook-form";
@@ -77,6 +79,26 @@ function Home() {
               <NickName>{user?.nickname}</NickName>
             </RankList>
           ))}
+          <RankList1>
+            <frame1>
+              <circle1></circle1>
+              <div>
+                <p>nickname</p>
+              </div>
+            </frame1>
+          </RankList1>
+          <RankList2>
+            <frame2>
+              <circle2></circle2>
+              <p>nickname</p>
+            </frame2>
+          </RankList2>
+          <RankList3>
+            <frame3>
+              <circle3></circle3>
+              <p>nickname</p>
+            </frame3>
+          </RankList3>
         </Ranker>
       </Layout>
     </>
@@ -162,27 +184,119 @@ const VerticalLine = styled.div`
 
 //  랭크 위치
 const Ranker = styled.div`
-  margin: 0 auto;
-  width: 80%;
+  /* align-items: center;
+  width: 1900px;
   height: 80%;
-  padding: 2.5%;
+  
   margin: 0 auto;
-  margin-top: 2%;
+   */
+  padding: 3%;
+  margin: 0 auto;
   display: flex;
+  justify-content: center;
 `;
 
-// 랭크 리스트
-const RankList = styled.div`
-  border: 1px solid black;
+const RankList1 = styled.div`
+  position: relative;
+  border: 1px solid #e9ecef;
   width: 200px;
-  height: 150px;
+  height: 200px;
   margin: 10px;
+  frame1 {
+    margin-top: 10px;
+    position: absolute;
+    width: 100px;
+    height: 115px;
+    margin-left: 23%;
+    background-image: url("${gold}");
+    background-size: 100%;
+    circle1 {
+      position: absolute;
+      margin-top: 20px;
+      margin-left: 6.3px;
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+    }
+  }
+  p {
+    position: absolute;
+    margin-top: 130px;
+    margin-left: 2px;
+    text-align: center;
+    width: 100px;
+  }
+`;
+
+const RankList2 = styled.div`
+  position: relative;
+  border: 1px solid #e9ecef;
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  frame2 {
+    position: absolute;
+    margin-top: 10px;
+    width: 100px;
+    height: 115px;
+    margin-left: 23%;
+    background-image: url("${silver}");
+    background-size: 100%;
+    circle2 {
+      position: absolute;
+      margin-top: 20px;
+      margin-left: 6.3px;
+      width: 89px;
+      height: 89px;
+      border-radius: 50%;
+    }
+  }
+  p {
+    position: absolute;
+    margin-top: 130px;
+    margin-left: 2px;
+    text-align: center;
+    width: 100px;
+  }
+`;
+
+const RankList3 = styled.div`
+  position: relative;
+  background-size: 100%;
+  border: 1px solid #e9ecef;
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  frame3 {
+    position: absolute;
+    margin-top: 10px;
+    width: 100px;
+    height: 115px;
+    margin-left: 23%;
+    background-image: url("${bronze}");
+    background-size: 100%;
+    circle3 {
+      position: absolute;
+      margin-top: 20px;
+      margin-left: 6px;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+    }
+  }
+  p {
+    position: absolute;
+    margin-top: 130px;
+    margin-left: 2px;
+    text-align: center;
+    width: 100px;
+  }
 `;
 
 // 닉네임
 const NickName = styled.div`
   flex-wrap: wrap;
-  margin-top: 10px;
+  margin-top: 20px;
   text-align: center;
 `;
 
