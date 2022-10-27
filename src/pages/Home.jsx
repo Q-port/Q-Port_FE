@@ -61,28 +61,30 @@ function Home() {
             <A>questionsform</A>
           </StyleLink>
         </Widgets>
-        <Ranker>
-          <RankList1 bgImage={users[0]?.avatar}>
-            <div>
-              <img src={users[0]?.avatar} alt=""></img>
+        {users ? (
+          <Ranker>
+            <RankList1 bgImage={users[0]?.avatar}>
               <div>
-                <p>{users[0]?.nickname}</p>
+                <img src={users[0]?.avatar} alt=""></img>
+                <div>
+                  <p>{users[0]?.nickname}</p>
+                </div>
               </div>
-            </div>
-          </RankList1>
-          <RankList2 bgImage={users[1]?.avatar}>
-            <div>
-              <img src={users[1]?.avatar} alt=""></img>
-              <p>{users[1]?.nickname}</p>
-            </div>
-          </RankList2>
-          <RankList3 bgImage={users[2]?.avatar}>
-            <div>
-              <img src={users[2]?.avatar} alt=""></img>
-              <p>{users[2]?.nickname}</p>
-            </div>
-          </RankList3>
-        </Ranker>
+            </RankList1>
+            <RankList2 bgImage={users[1]?.avatar}>
+              <div>
+                <img src={users[1]?.avatar} alt=""></img>
+                <p>{users[1]?.nickname}</p>
+              </div>
+            </RankList2>
+            <RankList3 bgImage={users[2]?.avatar}>
+              <div>
+                <img src={users[2]?.avatar} alt=""></img>
+                <p>{users[2]?.nickname}</p>
+              </div>
+            </RankList3>
+          </Ranker>
+        ) : null}
       </Layout>
     </>
   );
