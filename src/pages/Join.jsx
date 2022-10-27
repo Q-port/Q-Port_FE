@@ -11,8 +11,7 @@ function Join() {
     formState: { errors },
     setError,
   } = useForm();
-  const onValid = async (inputs, e) => {
-    e.preventDefault();
+  const onValid = async (inputs) => {
     if (inputs.password !== inputs.confirm) {
       setError(
         "confirm",
@@ -104,7 +103,7 @@ function Join() {
                   message: "닉네임은 2자 이상으로 작성해야합니다.",
                 },
                 pattern: {
-                  value: /^[a-z0-9ㄱ-ㅎ가-힣]+$/g,
+                  value: /^[a-zA-Z0-9ㄱ-ㅎ가-힣]+$/g,
                   message: "닉네임에는 특수 문자 및 공백이 불가능합니다.",
                 },
               }),
@@ -148,10 +147,4 @@ const Form = styled.form`
     font-size: 1.6rem;
     font-weight: 600;
   }
-`;
-const ErrorMessage = styled.span`
-  padding-top: 0.2rem;
-  height: 1.6rem;
-  color: red;
-  font-size: 0.75rem;
 `;

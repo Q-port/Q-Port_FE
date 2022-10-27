@@ -13,7 +13,7 @@ function AnswerList({ answers, selectedId, ownerId }) {
 
   return (
     <Wrapper as="section">
-      {answers?.map((answer, idx) => (
+      {newAnswers?.map((answer, idx) => (
         <AnswerItem
           key={answer.answerId}
           answer={answer}

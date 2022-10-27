@@ -4,7 +4,6 @@ import CommentSvg from "../../styles/svg/CommentSvg";
 import timeCheck from "../../utils/timeCheck";
 
 function Item({ isAnswer, data }) {
-  //console.log(data);
   return (
     <DataContainer>
       <Link

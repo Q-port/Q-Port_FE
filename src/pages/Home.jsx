@@ -16,22 +16,28 @@ import me10 from "../static/memoji10.png";
 import gold from "../static/gold.png";
 import silver from "../static/silver.png";
 import bronze from "../static/bronze.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { readQuestions } from "../redux/modules/questions";
+import { rankUser } from "../redux/modules/loginUser";
+import { useForm } from "react-hook-form";
+import UseUser from "../components/hooks/useUser";
 
 function Home() {
   const dispatch = useDispatch();
-  const { questions } = useSelector((state) => state.questions);
-  const counter = questions.map((search) => search.selectedAnswer);
-  const Rank = counter.sort((a, b) => b - a);
-
+  const { users } = useSelector((state) => state.users);
   const backgroundArr = [me1, me2, me3, me4, me5, me6, me7, me8, me9, me10];
   const randomIndex = Math.floor(Math.random() * backgroundArr.length);
   const backgroundImg = backgroundArr[randomIndex];
+  const navigate = useNavigate();
+  const { register, handleSubmit } = useForm();
+  const loginUser = UseUser();
+
+  const onSubmit = ({ keyword }) => {
+    navigate(`/questions?keyword=${keyword}`);
+  };
 
   useEffect(() => {
-    dispatch(readQuestions());
+    dispatch(rankUser());
   }, [dispatch]);
 
   return (
@@ -40,63 +46,47 @@ function Home() {
         <RandomImg style={{ backgroundImage: `url(${backgroundImg})` }} />
       </Box>
       <Layout>
-        <Input type="search" placeholder="Search" />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Input type="search" placeholder="Search" {...register("keyword")} />
+        </form>
+
         <Widgets>
           <Label>Qport Top 3</Label>
           <VerticalLine />
           <StyleLink to="/questions">
-            <A>questions</A>
-          </StyleLink>
-          <StyleLink to="/questions/:questionId/write">
-            <A>WriteAnswer</A>
+            <A>Questions</A>
           </StyleLink>
           <StyleLink to="/questions/form">
-            <A>questionsform</A>
+            <A>Question Form</A>
+          </StyleLink>
+          <StyleLink to={`/profile/${loginUser && loginUser?.userId}`}>
+            <A>My Profile</A>
           </StyleLink>
         </Widgets>
-        <div>
+        {users ? (
           <Ranker>
-            {/* {questions.map((questions, idx) => (
-            <RankList key={idx}>
-              <em>1</em>
-              <Avatar
-                style={{
-                  boxSizing: "border-box",
-                  width: 50,
-                  height: 50,
-                  backgroundColor: "#e9ecef",
-                  margin: "0 auto",
-                  marginTop: "30px",
-                }}
-                alt=" "
-                src=" "
-              />
-              <NickName>{questions.nickname}</NickName>
-
-            </RankList>
-          ))} */}
-            <RankList1>
-              <frame1>
-                <circle1></circle1>
+            <RankList1 bgImage={users[0]?.avatar}>
+              <div>
+                <img src={users[0]?.avatar} alt=""></img>
                 <div>
-                  <p>nickname</p>
+                  <p>{users[0]?.nickname}</p>
                 </div>
-              </frame1>
+              </div>
             </RankList1>
-            <RankList2>
-              <frame2>
-                <circle2></circle2>
-                <p>nickname</p>
-              </frame2>
+            <RankList2 bgImage={users[1]?.avatar}>
+              <div>
+                <img src={users[1]?.avatar} alt=""></img>
+                <p>{users[1]?.nickname}</p>
+              </div>
             </RankList2>
-            <RankList3>
-              <frame3>
-                <circle3></circle3>
-                <p>nickname</p>
-              </frame3>
+            <RankList3 bgImage={users[2]?.avatar}>
+              <div>
+                <img src={users[2]?.avatar} alt=""></img>
+                <p>{users[2]?.nickname}</p>
+              </div>
             </RankList3>
           </Ranker>
-        </div>
+        ) : null}
       </Layout>
     </>
   );
@@ -199,7 +189,7 @@ const RankList1 = styled.div`
   width: 200px;
   height: 200px;
   margin: 10px;
-  frame1 {
+  & > div {
     margin-top: 10px;
     position: absolute;
     width: 100px;
@@ -207,13 +197,14 @@ const RankList1 = styled.div`
     margin-left: 23%;
     background-image: url("${gold}");
     background-size: 100%;
-    circle1 {
+    img {
       position: absolute;
       margin-top: 20px;
       margin-left: 6.3px;
       width: 88px;
       height: 88px;
       border-radius: 50%;
+      object-fit: cover;
     }
   }
   p {
@@ -231,7 +222,7 @@ const RankList2 = styled.div`
   width: 200px;
   height: 200px;
   margin: 10px;
-  frame2 {
+  & > div {
     position: absolute;
     margin-top: 10px;
     width: 100px;
@@ -239,13 +230,14 @@ const RankList2 = styled.div`
     margin-left: 23%;
     background-image: url("${silver}");
     background-size: 100%;
-    circle2 {
+    img {
       position: absolute;
       margin-top: 20px;
       margin-left: 6.3px;
       width: 89px;
       height: 89px;
       border-radius: 50%;
+      object-fit: cover;
     }
   }
   p {
@@ -264,7 +256,7 @@ const RankList3 = styled.div`
   width: 200px;
   height: 200px;
   margin: 10px;
-  frame3 {
+  & > div {
     position: absolute;
     margin-top: 10px;
     width: 100px;
@@ -272,13 +264,14 @@ const RankList3 = styled.div`
     margin-left: 23%;
     background-image: url("${bronze}");
     background-size: 100%;
-    circle3 {
+    img {
       position: absolute;
       margin-top: 20px;
       margin-left: 6px;
       width: 90px;
       height: 90px;
       border-radius: 50%;
+      object-fit: cover;
     }
   }
   p {
@@ -288,13 +281,6 @@ const RankList3 = styled.div`
     text-align: center;
     width: 100px;
   }
-`;
-
-// 닉네임
-const NickName = styled.div`
-  flex-wrap: wrap;
-  margin-top: 20px;
-  text-align: center;
 `;
 
 // Link 태그

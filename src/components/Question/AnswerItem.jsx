@@ -62,10 +62,10 @@ function AnswerItem({ answer, selectedId, user, ownerId }) {
       <ItemBtns>
         <div>
           <span>
-            <HeartSvg /> 3
+            <HeartSvg />
           </span>
           <span>
-            <CommentSvg /> 2
+            <CommentSvg />
           </span>
           {user && user.userId === answer.userId ? (
             answer.answerId === selectedId ? null : (
