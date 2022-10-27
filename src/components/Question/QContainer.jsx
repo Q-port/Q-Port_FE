@@ -2,8 +2,6 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { removeQuestion } from "../../redux/modules/questions";
-
-import { Flexbox } from "../../styles/flex";
 import QuestionSvg from "../../styles/svg/QuestionSvg";
 import getDate from "../../utils/getDate";
 function QContainer({ question, len, user }) {

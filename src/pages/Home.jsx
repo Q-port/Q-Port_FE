@@ -16,20 +16,17 @@ import me9 from "../static/memoji9.png";
 import me10 from "../static/memoji10.png";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { readQuestions } from "../redux/modules/questions";
+import { rankUser } from "../redux/modules/loginUser";
 
 function Home() {
   const dispatch = useDispatch();
-  const { questions } = useSelector((state) => state.questions);
-  const counter = questions.map((search) => search.selectedAnswer);
-  const Rank = counter.sort((a, b) => b - a);
-
+  const { users } = useSelector((state) => state.users);
   const backgroundArr = [me1, me2, me3, me4, me5, me6, me7, me8, me9, me10];
   const randomIndex = Math.floor(Math.random() * backgroundArr.length);
   const backgroundImg = backgroundArr[randomIndex];
 
   useEffect(() => {
-    dispatch(readQuestions());
+    dispatch(rankUser());
   }, [dispatch]);
 
   return (
@@ -53,8 +50,8 @@ function Home() {
           </StyleLink>
         </Widgets>
         <Ranker>
-          {questions.map((questions, idx) => (
-            <RankList key={idx}>
+          {users?.map((user) => (
+            <RankList key={user?.userId}>
               <Avatar
                 style={{
                   boxSizing: "border-box",
@@ -67,7 +64,7 @@ function Home() {
                 alt=" "
                 src=" "
               />
-              <NickName>{questions.nickname}</NickName>
+              <NickName>{user?.nickname}</NickName>
             </RankList>
           ))}
         </Ranker>
