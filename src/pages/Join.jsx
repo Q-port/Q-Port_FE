@@ -148,9 +148,3 @@ const Form = styled.form`
     font-weight: 600;
   }
 `;
-const ErrorMessage = styled.span`
-  padding-top: 0.2rem;
-  height: 1.6rem;
-  color: red;
-  font-size: 0.75rem;
-`;

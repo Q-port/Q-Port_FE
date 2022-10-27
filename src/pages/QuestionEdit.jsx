@@ -17,7 +17,7 @@ function QuestionEdit() {
     content: "",
     qnaImage: "",
   });
-  console.log(question);
+
   const [file, setFile] = useState("");
 
   useEffect(() => {

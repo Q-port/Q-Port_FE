@@ -56,7 +56,6 @@ function AnswerEdit() {
       return window.alert("내용을 입력해주세요!");
     }
     try {
-      console.log(input);
       const response = await postApi.put(`answers/${id}`, {
         ...input,
       });

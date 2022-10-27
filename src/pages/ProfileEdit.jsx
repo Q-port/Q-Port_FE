@@ -7,7 +7,7 @@ import UseUser from "../components/hooks/useUser";
 import Layout from "../components/Layout/Layout";
 import TextInput from "../elem/TextInput";
 import { profileUser } from "../redux/modules/profile";
-import instance, { api, postApi } from "../shared/apis";
+import instance, { postApi } from "../shared/apis";
 import { Flexbox } from "../styles/flex";
 function ProfileEdit() {
   const loginUser = UseUser();
@@ -67,7 +67,7 @@ function ProfileEdit() {
       newPassword,
       confirm,
     });
-    console.log(response);
+
     if (response.data.ok) {
       alert(response.data.message);
       navigate(`/profile/${user.userId}`);

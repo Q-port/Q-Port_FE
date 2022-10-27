@@ -1,6 +1,6 @@
 import { memo, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { removeCookieToken } from "../../shared/Cookie";
 import UseUser from "../hooks/useUser";
@@ -10,24 +10,9 @@ import { getUser } from "../../redux/modules/loginUser";
 
 function Header() {
   const user = UseUser();
-  const { pathname } = useLocation();
-  const navigate = useNavigate();
+
   const dispatch = useDispatch();
   //로그인한 유저가 login / join 페이지 접근시 이전 페이지로 되돌린다.
-  useEffect(() => {
-    if (user) {
-      switch (pathname) {
-        case "/login":
-          navigate(-1);
-          break;
-        case "/join":
-          navigate(-1);
-          break;
-        default:
-          return;
-      }
-    }
-  }, [pathname, user, navigate]);
 
   useEffect(() => {
     dispatch(getUser(user));

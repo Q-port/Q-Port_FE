@@ -42,7 +42,6 @@ export const removeQuestion = createAsyncThunk(
 export const searchQuestions = createAsyncThunk(
   "questions/searchQuestions",
   async (payload, thunkApi) => {
-    console.log(payload);
     try {
       const { data } = await api.get(`qnas/search?content=${payload}`);
       return thunkApi.fulfillWithValue(data.data);

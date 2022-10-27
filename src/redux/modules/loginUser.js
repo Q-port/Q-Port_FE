@@ -27,7 +27,6 @@ const usersSlice = createSlice({
   },
   extraReducers: {
     [rankUser.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.users = action.payload;
     },
   },
