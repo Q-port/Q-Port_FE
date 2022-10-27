@@ -14,9 +14,10 @@ import me7 from "../static/memoji7.png";
 import me8 from "../static/memoji8.png";
 import me9 from "../static/memoji9.png";
 import me10 from "../static/memoji10.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { rankUser } from "../redux/modules/loginUser";
+import { useForm } from "react-hook-form";
 
 function Home() {
   const dispatch = useDispatch();
@@ -24,6 +25,12 @@ function Home() {
   const backgroundArr = [me1, me2, me3, me4, me5, me6, me7, me8, me9, me10];
   const randomIndex = Math.floor(Math.random() * backgroundArr.length);
   const backgroundImg = backgroundArr[randomIndex];
+  const navigate = useNavigate();
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = ({ keyword }) => {
+    navigate(`/questions?keyword=${keyword}`);
+  };
 
   useEffect(() => {
     dispatch(rankUser());
@@ -35,7 +42,10 @@ function Home() {
         <RandomImg style={{ backgroundImage: `url(${backgroundImg})` }} />
       </Box>
       <Layout>
-        <Input type="search" placeholder="Search" />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Input type="search" placeholder="Search" {...register("keyword")} />
+        </form>
+
         <Widgets>
           <Label>Qport Top 3</Label>
           <VerticalLine />

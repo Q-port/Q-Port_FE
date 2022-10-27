@@ -13,6 +13,9 @@ import EditSvg from "../styles/svg/EditSvg";
 
 function Question() {
   const dispatch = useDispatch();
+  //const location = useLocation();
+  //const params = new URLSearchParams(location.search);
+  //const keyword = params.get("keyword");
   const { questions } = useSelector((state) => state.questions);
 
   useEffect(() => {
