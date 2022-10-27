@@ -38,7 +38,8 @@ export const readQuestions = createAsyncThunk(
   "questions/readQuestions",
   async (payload, thunkApi) => {
     try {
-      const { data } = await api.get("http://43.201.84.98/api/qnas");
+      console.log(process.env.REACT_APP_SERVER_URL);
+      const { data } = await api.get("qnas");
       return thunkApi.fulfillWithValue(data.data);
     } catch (e) {
       return thunkApi.rejectWithValue(e);
